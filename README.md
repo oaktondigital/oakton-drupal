@@ -9,18 +9,18 @@ git clone ${GIT_REPO} drupal
 ```
 
 # Requirements
-1. Install Docker
+## Install Docker
   * [Linux](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
   * [MacOS](https://docs.docker.com/docker-for-mac/install/)
 
-1. Install Docker-Compose
+## Install Docker-Compose
   * [Docker-Compose](https://docs.docker.com/compose/install/)
 
-1. Install Ahoy
+## Install Ahoy
   * [Ahoy Install](https://github.com/ahoy-cli/ahoy)
   * [Ahoy Releases](https://github.com/ahoy-cli/ahoy/releases)
 
-1. Install Pygmy
+## Install Pygmy
   * [Pygmy](https://docs.amazee.io/local_docker_development/pygmy.html#prerequisites)
 
 # Set up
