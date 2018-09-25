@@ -23,8 +23,7 @@ git clone ${GIT_REPO} drupal
 ## Install Pygmy
   * [Pygmy](https://docs.amazee.io/local_docker_development/pygmy.html#prerequisites)
 
-# Set up
-## Get Started
+# Get Started
 ### Start pygmy
 ```
 pygmy up
