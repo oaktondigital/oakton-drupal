@@ -33,7 +33,7 @@ pygmy up
 ahoy up
 ```
 ### Import database
-Place the `*.sql` file into the `import` directory
+Place the `*.sql` file into the `import` directory then run the following to start the import
 ```
 ahoy import-db
 ```
