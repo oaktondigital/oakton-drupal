@@ -9,11 +9,7 @@ x-lagoon-local-dev-url:
 x-volumes:
   &default-volumes
     volumes:
-#      - ./themes:/app/profiles/govcms/themes/custom:${VOLUME_FLAGS:-delegated}
-#      - ./drupal/sites/all/themes:/app/sites/all/themes:${VOLUME_FLAGS:-delegated}
-#      - ./drupal/sites/all/modules:/app/sites/all/modules:${VOLUME_FLAGS:-delegated}
-#      - ./drupal/modules:/app/modules:${VOLUME_FLAGS:-delegated}
-#      - ./drupal:/app/:${VOLUME_FLAGS:-delegated}
+      - ./drupal:/app/:${VOLUME_FLAGS:-delegated}
       - ./files:/app/sites/default/files:delegated
       - ./import:/oakton/import:delegated
       - ./scripts:/oakton/scripts:delegated
