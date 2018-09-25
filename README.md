@@ -9,19 +9,18 @@ git clone ${GIT_REPO} drupal
 ```
 
 # Requirements
-
-Install Docker
+1. Install Docker
   * [Linux](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
   * [MacOS](https://docs.docker.com/docker-for-mac/install/)
 
-Install Docker-Compose
+1. Install Docker-Compose
   * [Docker-Compose](https://docs.docker.com/compose/install/)
 
-Install Ahoy
+1. Install Ahoy
   * [Ahoy Install](https://github.com/ahoy-cli/ahoy)
   * [Ahoy Releases](https://github.com/ahoy-cli/ahoy/releases)
-  
-Install Pygmy
+
+1. Install Pygmy
   * [Pygmy](https://docs.amazee.io/local_docker_development/pygmy.html#prerequisites)
 
 # Set up
@@ -49,3 +48,9 @@ ahoy drush variable-set stage_file_proxy_origin "https://<domain>"
 ```
 ahoy login
 ```
+
+# Access
+Once the containers are running, the following will be available
+
+* [drupal](http://drupal.local.oakton.digital)
+* [phpMyAdmin](http://myadmin.local.oakton.digital:8089)
