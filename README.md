@@ -57,8 +57,22 @@ ahoy login
 Once it is running, you can develop as normal in the `drupal` directory which contains your git repository.
 You can commit as normal inside of that directory, but make sure you run any ahoy commands in the `oakton-drupal` directory.
 
+If you are not developing, shutdown the development environment by running the following
+## Stop Environment
+```
+ahoy stop
+pygmy stop
+```
+
+## Destroy Environment
+```
+ahoy down
+pygmy down
+```
+
 # Access
 Once the containers are running, the following URLs will be available
 
 * [drupal](http://drupal.local.oakton.digital)
 * [phpMyAdmin](http://myadmin.local.oakton.digital:8089)
+* [MailHog Mailcatcher](http://mailhog.docker.amazee.io/)
