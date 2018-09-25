@@ -1,14 +1,14 @@
 #!/bin/bash
 
-echo "Checking if any databases to import"
+echo "Checking if there are any databases to import."
 IMPORTS=$(ls /oakton/import/*.sql --color=none)
 RESULT=$(echo $IMPORTS | wc -l)
 if [ $RESULT -gt 1 ]; then
-  echo "too many .sql files"
+  echo "Too many .sql files, leave just the one you want to import"
   exit 0
 else
-  echo "found ${IMPORTS}"
-  echo "importing.."
+  echo "Found ${IMPORTS}"
+  echo "Importing >>"
   drush sqlc < ${IMPORTS}
-  echo "done"
+  echo "<< Done"
 fi
