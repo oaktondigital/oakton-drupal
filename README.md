@@ -53,8 +53,12 @@ ahoy drush variable-set stage_file_proxy_origin "https://<domain>"
 ahoy login
 ```
 
+# Notes
+Once it is running, you can develop as normal in the `drupal` directory which contains your git repository.
+You can commit as normal inside of that directory, but make sure you run any ahoy commands in the `oakton-drupal` directory.
+
 # Access
-Once the containers are running, the following will be available
+Once the containers are running, the following URLs will be available
 
 * [drupal](http://drupal.local.oakton.digital)
 * [phpMyAdmin](http://myadmin.local.oakton.digital:8089)
