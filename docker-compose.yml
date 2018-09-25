@@ -1,0 +1,130 @@
+version: '2.3'
+
+x-lagoon-project:
+  &lagoon-project oakton-drupal
+
+x-lagoon-local-dev-url:
+  &lagoon-local-dev-url http://drupal.local.oakton.digital
+
+x-volumes:
+  &default-volumes
+    volumes:
+#      - ./themes:/app/profiles/govcms/themes/custom:${VOLUME_FLAGS:-delegated}
+#      - ./drupal/sites/all/themes:/app/sites/all/themes:${VOLUME_FLAGS:-delegated}
+#      - ./drupal/sites/all/modules:/app/sites/all/modules:${VOLUME_FLAGS:-delegated}
+#      - ./drupal/modules:/app/modules:${VOLUME_FLAGS:-delegated}
+#      - ./drupal:/app/:${VOLUME_FLAGS:-delegated}
+      - ./files:/app/sites/default/files:delegated
+      - ./import:/oakton/import:delegated
+      - ./scripts:/oakton/scripts:delegated
+      - ./tests/behat/features:/app/tests/behat/features:${VOLUME_FLAGS:-delegated}
+      - ./tests/phpunit/tests:/app/tests/phpunit/tests:${VOLUME_FLAGS:-delegated}
+
+x-environment:
+  &default-environment
+    LAGOON_PROJECT: *lagoon-project
+    LAGOON_ROUTE: &default-url ${LOCALDEV_URL:-http://drupal.local.oakton.digital}
+
+services:
+
+  cli:
+    build:
+      context: .
+      dockerfile: .docker/Dockerfile.cli
+    image: *lagoon-project
+    labels:
+      lagoon.type: cli-persistent
+      lagoon.persistent.name: nginx
+      lagoon.persistent: /app/sites/default/files/
+    << : *default-volumes
+    volumes_from:
+      - container:amazeeio-ssh-agent
+    environment:
+      << : *default-environment
+
+  test:
+    build:
+      context: .
+      dockerfile: .docker/Dockerfile.test
+    labels:
+      lagoon.type: none
+    << : *default-volumes
+    depends_on:
+      - cli
+    volumes_from:
+      - container:amazeeio-ssh-agent
+    environment:
+      << : *default-environment
+
+  nginx:
+    build:
+      context: .
+      dockerfile: .docker/Dockerfile.nginx-drupal
+      args:
+        CLI_IMAGE: *lagoon-project
+    labels:
+      lagoon.type: nginx-php-persistent
+      lagoon.persistent: /app/sites/default/files/
+    << : *default-volumes
+    depends_on:
+      - cli
+    environment:
+      << : *default-environment
+      LAGOON_LOCALDEV_URL: *default-url
+    networks:
+      - amazeeio-network
+      - default
+
+  php:
+    build:
+      context: .
+      dockerfile: .docker/Dockerfile.php
+      args:
+        CLI_IMAGE: *lagoon-project
+    labels:
+      lagoon.type: nginx-php-persistent
+      lagoon.name: nginx
+      lagoon.persistent: /app/sites/default/files/
+    << : *default-volumes
+    depends_on:
+      - cli
+    environment:
+      << : *default-environment
+
+  mariadb:
+    image: govcmslagoon/mariadb-drupal
+    labels:
+      lagoon.type: mariadb
+    ports:
+      - "3306" # Find port on host with `docker-compose port mariadb 3306`
+    environment:
+      << : *default-environment
+
+  redis:
+    image: govcmslagoon/redis
+    labels:
+      lagoon.type: redis
+    environment:
+      << : *default-environment
+
+  solr:
+    image: govcmslagoon/solr
+    labels:
+      lagoon.type: solr
+    ports:
+      - "8983" # Find port on host with `docker-compose port solr 8983`
+    environment:
+      << : *default-environment
+
+  chrome:
+    image: selenium/standalone-chrome
+    shm_size: '1gb'
+    depends_on:
+      - test
+    labels:
+      lagoon.type: none
+    << : *default-volumes
+
+networks:
+  amazeeio-network:
+    external: true

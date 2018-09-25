@@ -1,0 +1,18 @@
+version: '2.3'
+services:
+# use phpmyadmin for database management
+  myadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    ports:
+      - "8089:80"
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOST=mariadb
+      - PMA_USER=drupal
+      - PMA_PASSWORD=drupal
+      - PMA_ABSOLUTE_URI=http://myadmin.local.oakton.digital
+    external_links:
+      - mariadb:db
+    depends_on:
+      - mariadb
