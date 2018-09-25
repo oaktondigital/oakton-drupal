@@ -3,9 +3,14 @@
 Clone this repository, then clone your drupal repository using the commands below
 
 ```
+# clone oakton-drupal
 git clone git@github.com:oaktondigital/oakton-drupal oakton-drupal && cd $_
-GIT_REPO=git@github.com:<repoorg>/<reponame>.git
-git clone ${GIT_REPO} drupal
+# clone your drupal repository
+git clone git@github.com:<repoorg>/<reponame>.git drupal
+```
+You will also need to copy in the `settings.php` to `drupal/sites/default/settings.php` file, make sure your main drupal repositing has `sites/*/settings.php` in the .gitignore file
+```
+cp oakton.settings.php drupal/sites/default/settings.php
 ```
 
 # Requirements
