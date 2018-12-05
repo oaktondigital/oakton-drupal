@@ -2,4 +2,4 @@ FROM govcmslagoon/govcms7
 
 RUN rm -Rf /app/
 COPY drupal/ /app/
-COPY .settings.php /app/sites/default/settings.php
+COPY oakton.settings.php /app/sites/default/settings.php
