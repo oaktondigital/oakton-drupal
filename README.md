@@ -37,6 +37,13 @@ pygmy up
 ```
 ahoy up
 ```
+### Install profile
+If you have no database and are starting a fresh site, you can install a profile
+```
+ahoy install #install govcms profile if drupal is govcms distro
+## OR
+ahoy install-standard #install the standard drupal profile
+```
 ### Import database
 Place the `*.sql` file into the `import` directory then run the following to start the import
 ```
