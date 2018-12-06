@@ -46,6 +46,10 @@ commands:
     usage: Install the profile.
     cmd: docker-compose exec -T test drush si -y govcms "$@"
 
+  install-standard:
+    usage: Install the profile.
+    cmd: docker-compose exec -T test drush si -y standard "$@"
+
   login:
     usage: Login to a website.
     cmd: docker-compose exec -T test drush uli "$@"
