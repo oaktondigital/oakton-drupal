@@ -66,13 +66,13 @@ You can commit as normal inside of that directory, but make sure you run any aho
 
 ## Drupal 8 Docroots
 In the event you are unfortunate enough to have to use drupal 8 where the repository root has a docroot folder, you will need to modify the following two files
-.docker/Dockerfile.cli
+* `.docker/Dockerfile.cli`
 ```
 COPY drupal/ /app/
 ## CHANGE TO
 COPY drupal/<foldername> /app/
 ```
-docker-compose.yml
+* `docker-compose.yml`
 ```
 - ./drupal:/app/:${VOLUME_FLAGS:-delegated}
 ## CHANGE TO
