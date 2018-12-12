@@ -64,6 +64,21 @@ ahoy login
 Once it is running, you can develop as normal in the `drupal` directory which contains your git repository.
 You can commit as normal inside of that directory, but make sure you run any ahoy commands in the `oakton-drupal` directory.
 
+## Drupal 8 Docroots
+In the event you are unfortunate enough to have to use drupal 8 where the repository root has a docroot folder, you will need to modify the following two files
+.docker/Dockerfile.cli
+```
+COPY drupal/ /app/
+## CHANGE TO
+COPY drupal/<foldername> /app/
+```
+docker-compose.yml
+```
+- ./drupal:/app/:${VOLUME_FLAGS:-delegated}
+## CHANGE TO
+- ./drupal/<foldername>:/app/:${VOLUME_FLAGS:-delegated}
+```
+
 If you are not developing, shutdown the development environment by running the following
 ## Stop Environment
 ```
