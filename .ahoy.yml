@@ -80,8 +80,8 @@ commands:
 
   drupal8:
     usage: change cli container to be drupal 8 base
-    cmd: sed -i 's~FROM govcmslagoon/govcms7~FROM govcms8lagoon/govcms8~g' .docker/Dockerfile.cli
+    cmd: sed -i.bak 's~FROM govcmslagoon/govcms7~FROM govcms8lagoon/govcms8~g' .docker/Dockerfile.cli
     
   drupal7:
     usage: change cli container to be drupal 7 base
-    cmd: sed -i 's~FROM govcms8lagoon/govcms8~FROM govcmslagoon/govcms7~g' .docker/Dockerfile.cli
+    cmd: sed -i.bak 's~FROM govcms8lagoon/govcms8~FROM govcmslagoon/govcms7~g' .docker/Dockerfile.cli
