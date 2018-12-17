@@ -79,6 +79,17 @@ COPY drupal/<foldername> /app/
 - ./drupal/<foldername>:/app/:${VOLUME_FLAGS:-delegated}
 ```
 
+## Drupal 8 GovCMS
+If you want to use the GovCMS8 base containers, you can use the following commands to change the base container
+```
+ahoy drupal8
+```
+To change back to the base GovCMS7 containers, run
+```
+ahoy drupal7
+```
+If you change the base image, if you have any running containers you will also need to re-run `ahoy up` to make the containers rebuild with the new base.
+
 If you are not developing, shutdown the development environment by running the following
 ## Stop Environment
 ```
