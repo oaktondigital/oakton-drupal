@@ -77,3 +77,11 @@ commands:
   pull:
     usage: Pull latest docker images.
     cmd: docker image ls --format \"{{.Repository}}:{{.Tag}}\" | grep govcmslagoon/ | grep -v none | xargs -n1 docker pull | cat
+
+  drupal8:
+    usage: change cli container to be drupal 8 base
+    cmd: sed -i 's~FROM govcmslagoon/govcms7~FROM govcms8lagoon/govcms8~g' .docker/Dockerfile.cli
+    
+  drupal7:
+    usage: change cli container to be drupal 7 base
+    cmd: sed -i 's~FROM govcms8lagoon/govcms8~FROM govcmslagoon/govcms7~g' .docker/Dockerfile.cli
